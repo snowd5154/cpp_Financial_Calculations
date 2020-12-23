@@ -1,0 +1,54 @@
+//Include the necessary header files.
+#include <iostream>
+#include<iomanip>
+using namespace std;
+
+// start the main function.
+int main()
+{
+    // declare the variables.
+    double parent, sav_bonds;
+    double pay, net, hrs, tothrs, totpay = 0, wks;
+    double clothes, school;
+
+    // prompt the user to enter salary.
+    cout << "Enter hourly salary: ";
+    cin >> pay;
+
+    // Start the for loop
+    for (int i = 1; i <= 5; i++)
+    {
+        cout << "Enter number of hours worked on week " << i << ": ";
+        cin >> hrs;
+        tothrs += hrs;
+    }
+    // calculate the values and display result on console.
+    totpay = tothrs * pay;
+    cout << "Income before taxes of summer job $ " << totpay << endl;
+    net = totpay - (totpay * 14 / 100);
+    cout << "Income after taxes paid of summer job $ " << net << endl;
+    clothes = net * 10 / 100;
+    cout << "The money spend on clothes and other accessories $ " << clothes << endl;
+    school = net * 1 / 100;
+    cout << "The money spend on school supplies $ " << school << endl;
+    net = net - clothes - school;
+    cout << "The remaining net money is $ " << net << endl;
+
+    // propt the user to enter bonds.
+    cout << "Enter % of money spent on bonds: ";
+    cin >> sav_bonds;
+    cout << "The money spend to buy savings bonds $ " << net * sav_bonds / 100 << endl;
+
+    // Check the condition
+    if (sav_bonds == 0)
+        parent = 1 / 100 * net;
+    // check the conditions
+    else if (sav_bonds <= 25)
+        parent = ((sav_bonds * net / 100) * 0.25) + (net / 100);
+    else
+        parent = (sav_bonds * net / 100) * 0.40 + ((2 * net) / 100);
+    // Display the result.
+    cout << "Your parents will spend $ " << fixed << setprecision(2) << parent << " onbonds\n";
+    system("pause");
+    return 0;
+}
