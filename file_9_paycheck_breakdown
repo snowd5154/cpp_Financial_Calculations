@@ -1,0 +1,50 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+
+using namespace std;
+
+int main(void)
+{
+        double Salary, Federal, State, Social, Health, Net;
+
+        string name;
+
+        cout << "Enter employee name:" << endl;
+        getline(cin, name);
+        cout << endl;
+        cout << "Enter salary:" << endl;
+        cin >> Salary;
+        cout << endl;
+
+        if (cin.fail() == true)
+        {
+                cout << "Error, this is not a numerical value." << endl;
+                cin.clear();
+                cin.ignore(50, '\n');
+        }
+        else if (Salary <= 0)
+        {
+                cout << "Salary has to be a positive number." << endl;
+        }
+        else
+        {
+                Federal = Salary * 0.15;
+                State = Salary * 0.035;
+                Social = Salary * 0.085;
+                Health = 75.00;
+                Net = Salary - Federal - State - Social - Health;
+
+                cout << fixed << showpoint << setprecision(2) << endl;
+
+                cout << "Federal tax = : " << Federal << endl;
+                cout << "State tax = : " << State << endl;
+                cout << "Social security tax = : " << Social << endl;
+                cout << "Health deduction = : " << Health << endl;
+                cout << "Net salary is: " << Net << endl;
+                cout << "Press any key to exit." << endl;
+        }
+        cin.ignore(2);
+
+        return 0;
+}
