@@ -1,0 +1,51 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+double getPeriodicPay(double L, double t, double i, int m) {
+
+    double periodicPay = L * i / (1 - pow(1 + i, -m * t));
+    cout << "Periodic payment is: " << periodicPay << endl;
+    return periodicPay;
+}
+
+void unpaidBalance(double periodicPay, double t, double i, int m) {
+    int k = 20;
+    double unpaid = periodicPay * (1 - pow(1 + i, -m * t + k)) / i;
+    cout << "The unpaid balance after 20 payments is: " << unpaid << endl;
+}
+
+int main() {
+        
+        char choice;
+
+        cout << "ENter (Y/y) to find the periodic payment: ";
+        cin >> choice;
+
+        while(choice == 'y' || choice == 'Y') {
+
+                double L, r, t, i;
+                int m;
+
+                cout << "Enter the loan amount: ";
+                cin >> L;
+                cout << "Enter the interest rate per year: ";
+                cin >> r;
+                cout << "Enter the number of payments per year: ";
+                cin >> m;
+                cout << "Enter the number of years for the loan to repay: ";
+                cin >> t;
+                
+                i = r / (100 * m);
+                
+                double periodicPay = getPeriodicPay(L, t, i, m);
+                
+                unpaidBalance(periodicPay, t, i, m);
+                
+                cout << "Enter (Y/y) to find the periodic payment: ";
+                cin >> choice;
+        }
+system("pause");
+        return 0;
+}
