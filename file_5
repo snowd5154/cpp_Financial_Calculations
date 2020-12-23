@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+#include<fstream>
+int main()
+{
+	double rent, maintenance, maintenanceCost, increaseRent;
+	double income, profit, maxProfit = 0;
+	int n;
+	ofstream outFile;
+	cout << "The rent to occupy all units: ";
+	cin >> rent;
+	cout << endl;
+	cout << "The increase in rent that results from a vacant unit: ";
+	cin >> increaseRent;
+	cout << endl;
+	cout << "The amount to maintain a rented unit: ";
+	cin >> maintenanceCost;
+	cout << endl;
+	outFile.open("apartments.txt");
+	for (int units = 50; units > 0; units--, rent += increaseRent)
+	{
+		income = units * rent;
+		maintenance = units * maintenanceCost;
+		profit = income - maintenance;
+		if (profit > maxProfit)
+		{
+			maxProfit = profit;
+			n = units;
+		}
+		outFile << rent << " " << units << " " << maintenance << " " << income << " " << profit << "\n";
+	}
+	outFile.close();
+	cout << "number units to be rented to maximize profit is: ";
+	cout << n;
+	cout << "\n";
+	cout << endl;
+	system("pause");
+	return 0;
+}
