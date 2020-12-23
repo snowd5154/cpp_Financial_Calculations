@@ -1,0 +1,97 @@
+#include <iostream>
+
+using namespace std;
+
+//main function
+
+int main()
+
+{
+
+     //declare the required variables
+
+     double loanborrow;
+
+     double monthlyamount;
+
+     double rate,rpm;
+
+     double interest=0;
+
+     double principal;
+
+     //prompt the user to enter the respective info as asked
+
+     cout<<"Enter the loan borrowed: $";
+
+     cin>>loanborrow;
+
+     cout<<"Enter the rate of interest per year: ";
+
+     cin>>rate;
+
+     cout<<"Enter monthly pay: $";
+
+     cin>>monthlyamount;
+
+     //calculate the rate per month
+
+     rpm=(rate/12.0)/100;
+
+     //declare the count variable
+
+     //that inimates the number of years
+
+     int count=0;
+
+     //execute a loop until the loan if ful filled
+
+     while(loanborrow>=0)
+
+     {
+
+          //condition to check whether the monthly
+
+          //pay is less than interest
+
+          if(monthlyamount>interest)
+
+          {
+
+              //if the condition is true,
+
+              //then execute the following statements
+
+              interest=loanborrow*rpm;
+
+              principal=monthlyamount-interest;
+
+              loanborrow=loanborrow-principal;
+
+              count++;
+
+          }
+
+          //if the condition is false
+
+          //display the below information
+
+          else
+
+          {
+
+              cout<<"Monthly pay is too low than the interest."
+
+                   <<"The loan cannot be recovered."<<endl;
+
+          }
+
+     }
+
+     cout<<"In "<<count<<" months the loan will be repaid."<<endl;
+
+     system("pause");
+
+     return 0;
+
+}
