@@ -1,0 +1,69 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+// declare billingAmount function
+double billingAmount(double hRate, double consTime, bool lowInc);
+int main()
+{
+double hourlyRate;
+double consultingTime;
+bool lowIncome;
+double yearlyIncome;
+
+cout << fixed << showpoint << setprecision(2);
+
+cout << "Enter yearly income: ";
+cin >> yearlyIncome;
+cout << endl;
+
+// set lowIncome
+if(yearlyIncome<=25000)
+lowIncome=true;
+else
+lowIncome=false;
+
+cout << "Enter the hourly rate: ";
+cin >> hourlyRate;
+cout << endl;
+
+cout << "Enter consulting time in minutes: ";
+cin >> consultingTime;
+cout << endl;
+
+// call billingAmount
+double amt = billingAmount(hourlyRate, consultingTime, lowIncome);
+cout<<"Billing Amount :$"<<amt<<endl;
+return 0;
+}
+
+double billingAmount(double hRate, double consTime, bool lowInc)
+{
+// write your billingAmmount function here
+double charges = 0;
+if (!lowInc)
+{
+if (consTime < 30)
+{
+charges = 0;
+}
+else if (consTime >= 30)
+{
+charges = hRate * 0.40 * ((consTime - 30) / 60.0);
+}
+}
+else
+{
+if (consTime < 20)
+{
+charges = 0;
+}
+else if (consTime >= 20)
+{
+charges = 0.70 * hRate * ((consTime - 20) / 60.0);
+}
+}
+return charges;
+
+}
