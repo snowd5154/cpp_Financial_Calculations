@@ -1,0 +1,120 @@
+#include <iostream>
+    #include <string>
+    using namespace std;
+    int getNumChildren();
+    double taxAmount();
+             
+    int main ()
+    {
+                   
+            int numPerson, standardExemption, tax;
+            double salary, amtInPension, amtdeducted;
+           
+            void getData();
+     
+            getData();
+           
+            double taxAmount(int numPerson, double salary, double amtdeducted, int standardExemption);
+           
+                    amtdeducted = salary - amtInPension;
+                    tax = taxAmount(numPerson, salary, amtInPension,standardExemption);
+                    cout << "The tax is: " << tax << endl;
+           
+             
+            return 0;
+    }
+     
+    void getData()
+     
+    {
+                 
+            char maritalStatus, answer;
+            int numChildren;
+            double salary;
+            int numPerson;
+            double standardExemption;
+            double grossIncome;
+            double pension;
+            cout << "What is your marital status? M = Married & S = Single : ";
+            cin >> maritalStatus;
+            cout << endl;
+             
+            if  (maritalStatus == 'm' || maritalStatus == 'M')
+            {  
+                numChildren = getNumChildren();
+           
+                cout << "Do both spouses earn income? Y = Yes & N = No : ";
+                cin >> answer;
+                cout << endl;
+             
+                if (answer == 'y' || answer == 'Y' )
+                {  
+                    cout << "Enter your combined salary: ";
+                    cin >> grossIncome;
+                    cout << endl;
+                }
+                     
+                else
+                {
+                    cout << "Enter your salary: ";
+                    cin >> grossIncome;
+                    cout << endl;
+                }
+             
+                    numPerson = 2 + numChildren;
+                   
+                }
+                else
+                {
+                    cout << "Please enter your salary: ";
+                    cin >> grossIncome;
+                    cout << endl;
+             
+                    numPerson = 1;
+                }
+                         
+            }
+           
+           
+            int getNumChildren()
+            {
+                int children;
+             
+                cout << "Please enter number of Children under the age of 14: ";
+                cin >> children;
+                cout << endl;
+                 
+                return children;
+            }
+           
+           
+           
+    double taxAmount(int numPerson, double salary, double amtdeducted, int standardExemption)
+    {
+            double taxableIncome, marginalIncome, marginTax;
+            int tax;
+            int baseTax, totalTax;
+            taxableIncome = salary - (1500.00 * numPerson) - amtdeducted - standardExemption;
+           
+                   
+            if (tax >= 0 || tax <= 15000)
+        {
+            marginTax =.15 * taxableIncome;
+            totalTax = marginTax;
+        }
+        else if (tax >= 15001 || tax <= 40000)
+        {
+            marginalIncome = taxableIncome - 15000;
+            marginTax = .25 * taxableIncome;
+            baseTax = 2250;
+            totalTax = baseTax + marginTax;
+        }
+            else if (tax > 40000)
+        {
+            marginalIncome = taxableIncome - 40000;
+            marginTax = .35 * taxableIncome;
+            baseTax = 8460;
+            totalTax = baseTax + marginTax;
+        }
+        return(totalTax);
+    }
