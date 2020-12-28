@@ -1,0 +1,89 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+class finance {
+private:
+    double periodicDeposit;
+    double numOfDepositsInAYear;
+    double years;
+    double interestRate;
+public:
+    finance(double, double, double, double);
+    void set (double, double, double, double);
+    void setPeriodicDeposit(double pD);
+    void setNumOfDepositsInAYear(double depInAYear);
+    void setTotalNumOfYears(double y);
+    void setInterestRate(double ir);
+    double getPeriodicDeposit();
+    double getNumOfDepositsInAYear();
+    double getTotalNumOfYears();
+    double getInterestRate();
+    double totalAccumulated();
+    double periodicPaymentToAccumulateASum(double s);
+};
+
+finance::finance (double pD, double depInAYear,  double y, double ir) {
+    periodicDeposit = pD;
+    numOfDepositsInAYear = depInAYear;
+    years = y;
+    interestRate = ir;
+}
+
+void finance::set(double pD, double depInAYear, double y, double ir) {
+    periodicDeposit = pD;
+    numOfDepositsInAYear = depInAYear;
+    years = y;
+    interestRate = ir;
+}
+
+void finance::setPeriodicDeposit(double pD) {
+    periodicDeposit = pD;
+}
+void finance::setNumOfDepositsInAYear(double depInAYear) {
+    numOfDepositsInAYear = depInAYear;
+}
+
+void finance::setTotalNumOfYears(double y) {
+    years = y;
+}
+
+void finance::setInterestRate(double ir) {
+    interestRate = ir;
+}
+
+double finance::getPeriodicDeposit() {
+    return periodicDeposit;
+}
+double finance::getNumOfDepositsInAYear() {
+    return numOfDepositsInAYear;
+}
+
+double finance::getTotalNumOfYears() {
+    return years;
+}
+
+double finance::getInterestRate() {
+    return interestRate;
+}
+
+double finance::totalAccumulated() {
+    double term = pow ((1 + interestRate / 100.0 / numOfDepositsInAYear), years * numOfDepositsInAYear);
+    double total = periodicDeposit * (term - 1) / (interestRate / 100.0 / numOfDepositsInAYear);
+    return total;
+}
+
+double finance::periodicPaymentToAccumulateASum(double s) {
+    double first = s * interestRate / 100 / numOfDepositsInAYear;
+    double second =  pow ((1 + interestRate / 100 / numOfDepositsInAYear), years * numOfDepositsInAYear);
+    return (first / (second - 1));
+}
+
+int main()
+{
+    finance f (500, 12, 25, 4.8);
+    cout << f.totalAccumulated() << endl;
+    cout << f.periodicPaymentToAccumulateASum(289022.416) << endl;
+    return 0;
+}
