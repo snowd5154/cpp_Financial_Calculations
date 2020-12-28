@@ -1,0 +1,831 @@
+// doctorType.h
+
+//doctorType.h header file
+
+#ifndef doctorType_H
+
+#define doctorType_H
+
+#include<iostream>
+
+#include<string>
+
+#include "personType.h"
+
+using namespace std;
+
+//Design the class doctorType,
+
+//inherited from the class personType
+
+class doctorType : public personType
+
+{
+
+// with an additional data memberto store a doctor’s speciality
+
+private :
+
+   string speciality;
+
+public:
+
+    //Add appropriate constructors and
+
+    //mem-ber functions to initialize,
+
+    // access, and manipulate the data members
+
+   doctorType(string first = "", string last = "",string speciality="");
+
+   void setSpeciality(string speciality) ;
+
+   string getSpeciality() ;
+
+};
+
+#endif //doctorType_H
+
+///////////////////////////////////////////////////////////////////////////
+
+//doctorType.cpp
+
+//doctorType.cpp
+
+#include "doctorType.h"
+
+// Declare the doctorType constructoe
+
+doctorType::doctorType(string first, string last ,string doctor_speciality)
+
+{
+
+   setName(first,last);
+
+   speciality=doctor_speciality;
+
+}
+
+// Set the doctor speciality
+
+void doctorType::setSpeciality(string doctor_speciality)
+
+{
+
+   speciality=doctor_speciality;
+
+}
+
+// Get the speciality
+
+string doctorType::getSpeciality()
+
+{
+
+   return speciality;
+
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+
+//billType.h
+
+//Create a billType.h header file
+
+#ifndef billType_H
+
+#define billType_H
+
+#include<iostream>
+
+#include<string>
+
+using namespace std;
+
+// Design the class billType
+
+class billType
+
+{
+
+// data members to store a patient’s ID
+
+//and a patient’s hospital charges,
+
+//such as pharmacy charges for medicine
+
+//,doctor’s fee, and room charges.
+
+private :
+
+   int patientID;
+
+   double pharmacyCharges;
+
+   double doctorFee;
+
+   double roomCharges;
+
+// Add appropriateconstructors
+
+//and member functions to initialize,
+
+//access, and manipulate the data members
+
+public:
+
+   billType(int patientID=0,double pharmacyCharges=0,double doctorFee=0,double roomCharges=0 );
+
+   void setpharmacyCharges(double pharmacyCharges);
+
+   double getpharmacyCharges() const;
+
+   void setDoctorFee(double doctorFee);
+
+   double getDoctorFee() const;
+
+   void setRoomCharges(double roomCharges);
+
+   double getRoomCharges() const;
+
+};
+
+#endif //billType_H
+
+/////////////////////////////////////////////////////////////////
+
+//billType.cpp
+
+// Create a billType.cpp file
+
+#include "billType.h"
+
+// create a function with default constructor
+
+billType::billType(int id,double pharmacy,double doc_fee,double H_R_Charge )
+
+{
+
+   patientID=id;
+
+   pharmacyCharges=pharmacy;
+
+   doctorFee=doc_fee;
+
+   roomCharges=H_R_Charge;
+
+}
+
+// Declare setpharmacyCharges fucntion
+
+void billType:: setpharmacyCharges(double pharmacy)
+
+{
+
+   pharmacyCharges=pharmacy;
+
+}
+
+// Declare getpharmacyCharges function
+
+double billType::getpharmacyCharges() const
+
+{
+
+   return pharmacyCharges;
+
+}
+
+// no return type fucntion set doctor fees
+
+void billType::setDoctorFee(double doc_fee)
+
+{
+
+   doctorFee=doc_fee;
+
+}
+
+// get the doctor fees
+
+double billType::getDoctorFee() const
+
+{
+
+   return doctorFee;
+
+}
+
+// set room charge
+
+void billType::setRoomCharges(double H_R_Charge)
+
+{
+
+   roomCharges=H_R_Charge;
+
+}
+
+// get the room charge
+
+double billType::getRoomCharges() const
+
+{
+
+   return roomCharges;
+
+}
+
+/////////////////////////////////////////////////////////////////
+
+//patientType.h
+
+//patientType.h header file
+
+#ifndef patientType_H
+
+#define patientType_H
+
+#include<iostream>
+
+#include<string>
+
+#include "personType.h"
+
+#include "dateType.h"
+
+#include "doctorType.h"
+
+using namespace std;
+
+//Design theclasspatientType
+
+//inherited from the class person Type
+
+class patientType :public personType
+
+{
+
+// with additional data members to
+
+//store a patient’s ID, age, date of birth,
+
+//attending physician’s name,
+
+//the date when the patient was
+
+// admitted in the hospital, and the
+
+//date when the patient was discharged
+
+//from the hospital
+
+private :
+
+   int patientID;
+
+   int age;
+
+   dateType dateOfBirth;
+
+   dateType admitDate;
+
+   dateType dischargeDate;
+
+   doctorType doctor;
+
+   //Add appropriate constructors and member
+
+   // functions to initialize, access,and
+
+   //manipulate the data members.
+
+public:
+
+   patientType(string first, string last,int patientID,int age, dateType dateOfBirth,dateType admitDate,dateType dischargeDate,doctorType doctor);
+
+   void setPatientID(int id);
+
+   int getPatientID();
+
+   void setAge(int age);
+
+   int getAge();
+
+   void setDOB(dateType dob);
+
+   dateType getDOB();
+
+   void setAdmitDate(dateType admitDate);
+
+   dateType getAdmitDate();
+
+   void setDischargeDate(dateType dischargeDate);
+
+   dateType getDischargeDate();
+
+   void setPhysicianName(doctorType doctor);
+
+   string getPhysicianName();
+
+};
+
+#endif //patientType_H
+
+///////////////////////////////////////////////////////////////
+
+//patientType.cpp
+
+// patientType.cpp
+
+#include <iostream>
+
+#include "patientType.h"
+
+// Defualt constructor
+
+patientType::patientType(string first, string last,int id,int patient_age, dateType dob,dateType admit_Date,dateType discharge_Date,doctorType doctor_)
+
+{
+
+   setName(first,last);
+
+   patientID=id;
+
+   age=patient_age;
+
+   dateOfBirth=dob;
+
+   admitDate=admit_Date;
+
+   dischargeDate=discharge_Date;
+
+   doctor=doctor_;
+
+}
+
+//set the method for patient Id
+
+void patientType::setPatientID(int id)
+
+{
+
+   patientID=id;
+
+}
+
+//set the patient age
+
+void patientType::setAge(int age_)
+
+{
+
+   age=age_;
+
+}
+
+// set the dob
+
+void patientType::setDOB(dateType dob)
+
+{
+
+   dateOfBirth=dob;
+
+}
+
+// set the admit date
+
+void patientType::setAdmitDate(dateType admit_Date)
+
+{
+
+   admitDate=admit_Date;
+
+}
+
+// set the discharge date
+
+void patientType::setDischargeDate(dateType discharge_Date)
+
+{
+
+   dischargeDate=discharge_Date;
+
+}
+
+// set the setPhysicianName d
+
+void patientType:: setPhysicianName(doctorType doctor_)
+
+{
+
+   doctor=doctor_;
+
+}
+
+// get the patient id
+
+int patientType::getPatientID()
+
+{
+
+   return patientID;
+
+}
+
+// get the patient age
+
+int patientType::getAge()
+
+{
+
+   return age;
+
+}
+
+// get the dob
+
+dateType patientType::getDOB()
+
+{
+
+   return dateOfBirth;
+
+}
+
+// get the admit date
+
+dateType patientType::getAdmitDate()
+
+{
+
+   return admitDate;
+
+}
+
+// get the discharge date
+
+dateType patientType::getDischargeDate()
+
+{
+
+   return dischargeDate;
+
+}
+
+// get the getPhysicianName
+
+string patientType::getPhysicianName()
+
+{
+
+   return doctor.getFirstName().append(" "+doctor.getLastName());
+
+}
+
+/////////////////////////////////////////////////////////////////
+
+//dateType.h
+
+// Macros file
+
+#ifndef dateType_H
+
+#define dateType_H
+
+// Use the class dateType to store the
+
+//date of birth, admit date, discharge date,
+
+// and theclass doctorType to store
+
+///the attending physician’s name
+
+class dateType
+
+{
+
+public:
+
+    void setDate(int month, int day, int year);
+
+    int getDay() const;
+
+    int getMonth() const;
+
+   
+
+    int getYear() const;
+
+    void printDate() const;
+
+    dateType(int month = 1, int day = 1, int year = 1900);
+
+private:
+
+    int dMonth;
+
+    int dDay;  
+
+    int dYear;
+
+};
+
+#endif //datType.h
+
+////////////////////////////////////////////////////////////
+
+//dateType.cpp
+
+// Design dateType.cpp from given book
+
+#include <iostream>
+
+#include "dateType.h"
+
+using namespace std;
+
+void dateType::setDate(int month, int day, int year)
+
+{
+
+    dMonth = month;
+
+    dDay = day;
+
+    dYear = year;
+
+}
+
+int dateType::getDay() const
+
+{
+
+    return dDay;
+
+}
+
+int dateType::getMonth() const
+
+{
+
+    return dMonth;
+
+}
+
+int dateType::getYear() const
+
+{
+
+    return dYear;
+
+}
+
+void dateType::printDate() const
+
+{
+
+    cout << dMonth << "-" << dDay << "-" << dYear;
+
+}
+
+    //Constructor with parameters
+
+dateType::dateType(int month, int day, int year)
+
+{
+
+    dMonth = month;
+
+    dDay = day;
+
+    dYear = year;
+
+}
+
+//////////////////////////////////////////////////////////////////
+
+//personType.h
+
+//personType.h
+
+#ifndef personType_H
+
+#define personType_H
+
+#include <string>
+
+using namespace std;
+
+// Design a calss personType declare in chapter 10 given book
+
+class personType
+
+{
+
+public:
+
+    void print() const;
+
+    void setName(string first, string last);
+
+    string getFirstName() const;
+
+  
+
+    string getLastName() const;
+
+      
+
+    personType(string first = "", string last = "");
+
+     
+
+protected:
+
+    string firstName;
+
+    string lastName;
+
+};
+
+#endif //personType_H
+
+//////////////////////////////////////////////////////////////
+
+//personType.cpp
+
+//personType.cpp
+
+// Create from the given book
+
+#include <iostream>
+
+#include <string>
+
+#include "personType.h"
+
+using namespace std;
+
+void personType::print() const
+
+{
+
+    cout << firstName << " " << lastName;
+
+}
+
+void personType::setName(string first, string last)
+
+{
+
+    firstName = first;
+
+    lastName = last;
+
+}
+
+string personType::getFirstName() const
+
+{
+
+    return firstName;
+
+}
+
+string personType::getLastName() const
+
+{
+
+    return lastName;
+
+}
+
+personType::personType(string first, string last)
+
+{
+
+    firstName = first;
+
+    lastName = last;
+
+}
+
+/////////////////////////////////////////////////////////////
+
+//main.cpp
+
+// Main program to test the classes
+
+// Declare the required header file
+
+#include<iostream>
+
+#include "doctorType.h"
+
+#include "patientType.h"
+
+#include "dateType.h"
+
+#include "billType.h"
+
+using namespace std;
+
+// Create a main function of the program
+
+int main()
+
+{
+
+// declare doctor information
+
+   doctorType doctor("Peter","Adams","Urologist");
+
+cout << "**********************************" << endl;
+
+cout << "**        Doctor Details        **" << endl;
+
+cout << "**********************************" << endl;
+
+   cout<<"Dr.Name : "<<doctor.getFirstName()<<" "<<doctor.getLastName()<<endl;
+
+   cout<<"Speciality : "<<doctor.getSpeciality() <<endl;
+
+   cout << endl;
+
+   // Create patient information
+
+   dateType dateOfBirth(9,1,1993);
+
+   dateType admitDate(7,6,2020);
+
+   dateType dischargeDate(10,8,2020);
+
+// Declare the patient information via object
+
+   patientType patient("Glen","Maxwell",31287,28,dateOfBirth,admitDate,dischargeDate,doctor);
+
+// Display the patient information
+
+cout << "**********************************" << endl;
+
+   cout << "**       Patient Details        **" << endl;
+
+   cout << "**********************************" << endl;
+
+   cout<<"Patient Name : "<<patient.getFirstName()<<" "<<patient.getLastName()<<endl;
+
+   cout<<"Patient ID :"<<patient.getPatientID()<<endl;
+
+   cout<<"Age : "<<patient.getAge()<<endl;
+
+   cout<<"Date Of Birth :";
+
+   patient.getDOB().printDate();
+
+   cout << endl;
+
+   cout << endl;
+
+   cout << "**********************************" << endl;
+
+   cout << "**        Visit Details         **" << endl;
+
+   cout << "**********************************" << endl;
+
+   cout<<"\nDate Of Admission :";
+
+   patient.getAdmitDate().printDate();
+
+   cout<<"\nDate Of Discharge :";
+
+   patient.getDischargeDate().printDate();
+
+   cout<<"\nDoctor Name :"<<patient.getPhysicianName()<<endl;
+
+   cout << endl;
+
+   // Declare the patient bill information object
+
+   billType patientBill(31287,250000,1200,24000);
+
+   // Display the patient information
+
+   cout << "**********************************" << endl;
+
+   cout << "**     Patient Billing Details **" << endl;
+
+   cout << "**********************************" << endl;
+
+   cout<<"Medicine Cost: "<<patientBill.getpharmacyCharges()<<endl;
+
+   cout<<"Doctor Fee: "<<patientBill.getDoctorFee()<<endl;
+
+   cout<<"Room Charges: "<<patientBill.getRoomCharges()<<endl;
+
+   cout<<"Total Hospital charge : "<<patientBill.getpharmacyCharges()+patientBill.getDoctorFee()+patientBill.getRoomCharges()<<endl;
+
+   return 0;
+
+}
